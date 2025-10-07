@@ -1,0 +1,160 @@
+/* General Page */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background: #f0f4f8;
+  padding: 1rem;
+}
+
+/* Header: Scoreboard + Game Mode */
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Scoreboard Box */
+.scoreboard {
+  border: 2px solid #555;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.scoreboard h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+}
+
+.scoreboard p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+/* Game Mode */
+.gameMode {
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+  align-items: center;
+}
+
+.gameMode label input {
+  margin-right: 0.25rem;
+  cursor: pointer;
+}
+
+/* Main Game Area */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Status Text */
+.status {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Board Grid */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 5px;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: #ffffff;
+  border: 2px solid #555;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cell:hover {
+  background: #d0f0f7;
+  transform: scale(1.05);
+}
+
+.cell:focus {
+  outline: 3px solid #4caf50;
+  outline-offset: 2px;
+}
+
+/* Reset Button */
+.resetButton {
+  padding: 0.5rem 1.25rem;
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.resetButton:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.resetButton:focus {
+  outline: 3px solid #2e7d32;
+  outline-offset: 2px;
+}
+
+/* Title */
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .board {
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+  }
+
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .resetButton {
+    padding: 0.4rem 1rem;
+  }
+
+  .scoreboard {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .gameMode {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
