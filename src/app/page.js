@@ -69,12 +69,11 @@ export default function Home() {
     setXIsNext(!xIsNext);
   };
 
-  // Score & celebration
+// Computer move 
 useEffect(() => {
   if (gameMode === "computer" && !xIsNext && !winner) {
     setIsComputerThinking(true);
     const empty = board.map((v, i) => (v ? null : i)).filter((i) => i !== null);
-
     if (empty.length > 0) {
       const randomIndex = empty[Math.floor(Math.random() * empty.length)];
       setTimeout(() => {
@@ -85,19 +84,32 @@ useEffect(() => {
         setIsComputerThinking(false);
       }, 700);
     } else {
-      // Board full, tie
-      setIsComputerThinking(false); // <-- good
+      setIsComputerThinking(false);
     }
   }
 }, [board, xIsNext, gameMode, winner]);
 
 
+
+// 🎉 Celebration & scoring
 useEffect(() => {
-  // Stop computer thinking if game ends
-  if (winner || board.every(cell => cell !== null)) {
-    setIsComputerThinking(false);
+  if (winner) {
+    setCelebrating(true);
+    triggerConfetti();
+
+    // Update score
+    setScore((prev) => ({
+      ...prev,
+      [winner]: prev[winner] + 1,
+    }));
+
+    // Stop celebration after 3 seconds
+    celebrationTimer.current = setTimeout(() => {
+      setCelebrating(false);
+      celebrationTimer.current = null;
+    }, 3000);
   }
-}, [winner, board]);
+}, [winner]);
 
   // Reset board
   const resetGame = () => {
@@ -110,7 +122,6 @@ useEffect(() => {
     setXIsNext(true);
     setIsComputerThinking(false);
   };
-
 
   return (
     <div className={`${styles.page} ${celebrating ? styles.celebration : ""}`} role="main">
